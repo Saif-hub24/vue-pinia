@@ -1,26 +1,102 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <header>
+    <nav>
+      <ul>
+        <li class="nav-item">
+          <router-link :to="{name: 'Home'}" class="nav-link">
+            <img class="logo" src="./assets/build-a-bot-logo.png" alt="logo">
+            Build a bot
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{name: 'Build'}" class="nav-link">
+            Build
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{name: 'Search'}" class="nav-link">
+            Search
+          </router-link>
+        </li>
+        <li class="nav-item cart">
+          <router-link :to="{name: 'Cart'}" class="nav-link">
+            Cart
+          </router-link>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <!-- <HomePage msg="Welcome to Your Vue.js App" /> -->
+    <router-view />
+    <!-- <ProductSearch /> -->
+  </main>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue';
+<script setup>
+import { ref, provide } from 'vue';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld,
-  },
-};
+const userName = ref('Jim');
+provide('userName', userName);
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+body {
+  background: linear-gradient(to bottom, #555, #999);
+  background-attachment: fixed;
+}
+</style>
+
+<style scoped >
+main {
+  margin: 0 auto;
+  padding: 30px;
+  background-color: white;
+  width: 1400px;
+  min-height: 300px;
+}
+
+/* .robot-builder/deep/.add-to-cart { */
+
+/* .robot-builder>>>.add-to-cart {
+  color: red;
+  border: 2px solid blue;
+} */
+
+header {
+  background-color: #999;
+  width: 1460px;
+  margin: 0 auto;
+}
+
+ul {
+  padding: 3px;
+  display: flex;
+}
+.nav-link{
+  text-decoration: none;
+  color: inherit;
+}
+.nav-item {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 22px;
+  border-right: 1px solid #bbb;
+}
+.nav-item.cart{
+  position: relative;
+  margin-left: auto;
+  border-right: none;
+}
+
+.logo {
+  vertical-align: middle;
+  height: 30px;
+}
+.active-link {
+  color: white;
 }
 </style>
